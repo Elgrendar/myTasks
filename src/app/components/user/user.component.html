@@ -1,0 +1,106 @@
+<app-header></app-header>
+<div class="container" id="usersTable" *ngIf="hide; else addUserForm">
+  <div class="container mt-5">
+    <!--Iniciamos el contenedor de options-->
+    <div class="row">
+      <!-- Iniciamos la fila de las options-->
+
+      <button
+        (click)="addUser()"
+        class="m-2 mt-5 mx-auto col-1 rounded border-2"
+        [ariaDisabled]="true"
+        title="New user"
+      >
+        <img
+          src="../../../assets/imagenes/sistema/add_user.png"
+          class="card-img-top"
+          style="width: 75px; margin: 0 auto"
+          alt="New user"
+        />
+      </button>
+    </div>
+    <!--Finalizamos la fila de las options-->
+  </div>
+  <!--Finalizamos el contenedor de las options-->
+  <div class="container mt-2">
+    <!--Iniciamos el contenedor de las tablas-->
+    <div class="row">
+      <!--Iniciamos la tabla de los Usuarios-->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Opciones</th>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Contraseña</th>
+            <th scope="col">Email</th>
+            <th scope="col">Imagen</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="users.length >= 0; else sinUsuarios">
+          <tr *ngFor="let user of users">
+            <td>
+              <!--<input type="checkbox" id="check_{{ user.id_user }}" /> -->
+              <button
+                (click)="editUser(user.id_user)"
+                class="m-1 rounded border-2"
+                [ariaDisabled]="true"
+                title="Edit user"
+                *ngIf="user.id_user!=undefined"
+              >
+                <img
+                  src="../../../assets/imagenes/sistema/edit_user.png"
+                  style="width: 15px; margin: 0 auto"
+                  alt="Edit user"
+                />
+              </button>
+              <button
+                (click)="editUser(0)"
+                class="m-1 rounded border-2"
+                [ariaDisabled]="true"
+                title="Edit user"
+                *ngIf="user.id_user==undefined"
+              >
+                <img
+                  src="../../../assets/imagenes/sistema/edit_user.png"
+                  style="width: 15px; margin: 0 auto"
+                  alt="Edit user"
+                />
+              </button>
+
+              <button
+                (click)="delUser(user.id_user)"
+                class="m-1 rounded border-2"
+                [ariaDisabled]="true"
+                title="Delete User"
+                *ngIf="user.id_user!=undefined"
+              >
+                <img
+                  src="../../../assets/imagenes/sistema/delete_users.png"
+                  style="width: 15px; margin: 0 auto"
+                  alt="Delete user"
+                />
+              </button>
+            </td>
+            <td scope="row">{{ user.id_user }}</td>
+            <td>{{ user.user_name }}</td>
+            <td>{{ user.user_pass }}</td>
+            <td>{{ user.user_email }}</td>
+            <td>{{ user.user_image }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #sinUsuarios>
+        <tbody>
+          <p>No hay usuarios dados de alta aún en el sistema.</p>
+        </tbody>
+      </ng-template>
+    </div>
+    <!--Finalizamos la tabla de los Usuarios-->
+  </div>
+  <!--Finalizamos el contenedor de las options-->
+</div>
+<ng-template #addUserForm>
+  <app-new-user></app-new-user>
+</ng-template>
+<app-back></app-back>
