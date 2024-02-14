@@ -4,7 +4,7 @@
     <div class="card m-2 mt-5" style="width: 15rem" *ngFor="let desktop of desktops"><!--Iniciamos el div del proyecto-->
       <img src="../../../assets/imagenes/sistema/projects_icon.svg" class="card-img-top" alt="Project" />
       <div class="card-body">
-        <h5 class="card-title text-center fw-bold" (mouseover)="DoMouseOver(desktop)">{{desktop.getTitle()}}</h5>
+        <h5 class="card-title text-center fw-bold" (mouseover)="DoMouseOver(desktop)" (focus)="DoMouseOver(desktop)" (blur)="DoMouseOver(desktop)">{{desktop.getTitle()}}</h5>
         <p class="card-text text-sm-start text-break">{{desktop.getDescription()}}</p>
         <div class="text-center">
           <a href="#" class="btn btn-primary">Open</a>

@@ -46,7 +46,7 @@
                 class="m-1 rounded border-2"
                 [ariaDisabled]="true"
                 title="Edit user"
-                *ngIf="user.id_user!=undefined"
+                *ngIf="user.id_user!==undefined"
               >
                 <img
                   src="../../../assets/imagenes/sistema/edit_user.png"
@@ -59,7 +59,7 @@
                 class="m-1 rounded border-2"
                 [ariaDisabled]="true"
                 title="Edit user"
-                *ngIf="user.id_user==undefined"
+                *ngIf="user.id_user===undefined"
               >
                 <img
                   src="../../../assets/imagenes/sistema/edit_user.png"
@@ -73,7 +73,7 @@
                 class="m-1 rounded border-2"
                 [ariaDisabled]="true"
                 title="Delete User"
-                *ngIf="user.id_user!=undefined"
+                *ngIf="user.id_user!==undefined"
               >
                 <img
                   src="../../../assets/imagenes/sistema/delete_users.png"
@@ -82,7 +82,7 @@
                 />
               </button>
             </td>
-            <td scope="row">{{ user.id_user }}</td>
+            <td>{{ user.id_user }}</td>
             <td>{{ user.user_name }}</td>
             <td>{{ user.user_pass }}</td>
             <td>{{ user.user_email }}</td>

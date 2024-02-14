@@ -21,7 +21,7 @@ export class TaskComponent {
     { id: 4, description: 'Descripción de la tarea 3', author: 'Raúl' },
   ];
 
-  ngOnInit() {
+  OnInit() {
     for (let i = 0; i < this.tasks.length; i++) {
       window.localStorage.setItem(
         'Project_' + i,

@@ -1,9 +1,8 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { BackComponent } from '../../back/back.component';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { User } from '../../models/user.model';
-import { Router } from '@angular/router';
 import { NewUserComponent } from '../new-user/new-user.component';
 
 @Component({
@@ -24,7 +23,7 @@ export class UserComponent {
   public users = new Array<User>();
   public hide: boolean = true;
 
-  constructor(router: Router) {
+  constructor() {
     this.users = JSON.parse(window.localStorage.getItem('users') || '{}');
   }
 

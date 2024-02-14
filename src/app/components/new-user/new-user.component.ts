@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -10,8 +10,6 @@ import {
 import { Router } from '@angular/router';
 import { User } from '../../models/user.model';
 import { NgClass } from '@angular/common';
-
-
 
 @Component({
   selector: 'app-new-user',
@@ -56,13 +54,7 @@ export class NewUserComponent implements OnInit {
           Validators.maxLength(40),
         ],
       ],
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.email,
-        ],
-      ]
+      email: ['', [Validators.required, Validators.email]],
     });
   }
   get f(): { [key: string]: AbstractControl } {
