@@ -18,7 +18,7 @@ export const routes: Routes = [
     },
     {
         path:'home',
-        component:HomeComponent
+        component:HomeComponent, canActivate:[CanActivate]
     },
     {
         path:'desktops',
@@ -33,7 +33,7 @@ export const routes: Routes = [
         component:UserComponent, canActivate:[CanActivate]
     },
     {
-        path:'',redirectTo:'home',
+        path:'',redirectTo:'login',
         pathMatch:'full'
     },
     {

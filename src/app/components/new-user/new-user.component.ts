@@ -81,7 +81,7 @@ export class NewUserComponent implements OnInit {
       users.push(new User(usuario, password, email));
       window.localStorage.removeItem('users');
       window.localStorage.setItem('users', JSON.stringify(users));
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/users');
     }
   }
 
