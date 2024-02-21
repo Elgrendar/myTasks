@@ -18,16 +18,14 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-
 export class LoginComponent implements OnInit {
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
-    acceptTerms: new FormControl(false),
   });
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder,public router: Router) {}
+  constructor(private formBuilder: FormBuilder, public router: Router) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -47,7 +45,6 @@ export class LoginComponent implements OnInit {
           Validators.maxLength(40),
         ],
       ],
-      acceptTerms: [false, Validators.requiredTrue],
     });
   }
   get f(): { [key: string]: AbstractControl } {
@@ -59,17 +56,15 @@ export class LoginComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    if(this.form.controls['acceptTerms'].value){
-      const usuario=this.form.controls['username'].value;
-      const password=this.form.controls['password'].value;
-      const users = JSON.parse(window.localStorage.getItem('users') || '{}');
-      users.forEach((user: User) => {
-        if(password === user['user_pass'] && usuario=== user['user_name']){
-          window.localStorage.setItem('token','dkffñklghfñklghfdf');
-          this.router.navigateByUrl("/home");
-        }
-      });
-    }
+    const usuario = this.form.controls['username'].value;
+    const password = this.form.controls['password'].value;
+    const users = JSON.parse(window.localStorage.getItem('users') || '{}');
+    users.forEach((user: User) => {
+      if (password === user['user_pass'] && usuario === user['user_name']) {
+        window.localStorage.setItem('token', 'dkffñklghfñklghfdf');
+        this.router.navigateByUrl('/home');
+      }
+    });
   }
 
   onReset(): void {

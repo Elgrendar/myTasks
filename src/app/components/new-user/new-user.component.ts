@@ -82,6 +82,7 @@ export class NewUserComponent implements OnInit {
       window.localStorage.removeItem('users');
       window.localStorage.setItem('users', JSON.stringify(users));
       this.router.navigateByUrl('/users');
+      window.location.reload();
     }
   }
 

@@ -20,8 +20,8 @@ import { NewUserComponent } from '../new-user/new-user.component';
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  public users = new Array<User>();
-  public hide: boolean = true;
+  users = new Array<User>();
+  hide: boolean = true;
 
   constructor() {
     this.users = JSON.parse(window.localStorage.getItem('users') || '{}');
