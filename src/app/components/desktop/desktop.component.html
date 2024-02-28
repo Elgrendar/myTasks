@@ -1,16 +1,71 @@
 <app-header></app-header>
-<div class="container mt-5"><!--Iniciamos el contenedor de escritorios-->
-  <div class="row"><!-- Iniciamos la fila de proyectos del escritorio-->
-    <div class="card m-2 mt-5" style="width: 15rem" *ngFor="let desktop of desktops"><!--Iniciamos el div del proyecto-->
-      <img src="../../../assets/imagenes/sistema/projects_icon.svg" class="card-img-top" alt="Project" />
+<div class="container mt-5">
+  <!--Iniciamos el contenedor de options-->
+  <div class="row">
+    <!-- Iniciamos la fila de las options-->
+
+    <button
+      (click)="addDesktop()"
+      class="m-2 mt-5 mx-auto col-1 rounded border-2"
+      [ariaDisabled]="true"
+      title="New desktop"
+    >
+      <img
+        src="../../../assets/imagenes/sistema/plus_icon_white.svg"
+        class="card-img-top"
+        style="width: 75px; margin: 0 auto"
+        alt="New user"
+      />
+    </button>
+  </div>
+  <!--Finalizamos la fila de las options-->
+</div>
+<!--Finalizamos el contenedor de las options-->
+<div class="container mt-5">
+  <!--Iniciamos el contenedor de escritorios-->
+  <div
+    class="row"
+    *ngIf="desktops.length > 0; else sin"
+  >
+    <!-- Iniciamos la fila de proyectos del escritorio-->
+    <div
+      class="card m-2 mt-5"
+      style="width: 15rem"
+      *ngFor="let desktop of desktops"
+    >
+      <!--Iniciamos el div del proyecto-->
+      <img
+        src="../../../assets/imagenes/sistema/projects_icon.svg"
+        class="card-img-top"
+        alt="Desktop"
+      />
       <div class="card-body">
-        <h5 class="card-title text-center fw-bold" (mouseover)="DoMouseOver(desktop)" (focus)="DoMouseOver(desktop)" (blur)="DoMouseOver(desktop)">{{desktop.getTitle()}}</h5>
-        <p class="card-text text-sm-start text-break">{{desktop.getDescription()}}</p>
+        <h5
+          class="card-title text-center fw-bold"
+          (mouseover)="DoMouseOver()"
+          (focus)="DoMouseOver()"
+          (blur)="DoMouseOver()"
+        >
+          {{ desktop.desktopTitle }}
+        </h5>
+        <p class="card-text text-sm-start text-break">
+          {{ desktop.desktopDescription }}
+        </p>
         <div class="text-center">
           <a href="#" class="btn btn-primary">Open</a>
         </div>
       </div>
-    </div><!--Finalizamos el div del proyecto-->
-  </div><!--Finalizamos la fila deproyectos del escritorio-->
-</div><!--Finalizamos el contenedor del escritorio-->
+    </div>
+    <!--Finalizamos el div del proyecto-->
+  </div>
+  <!--Finalizamos la fila deproyectos del escritorio-->
+  <ng-template #sin>
+    <div class="row ">
+      <p class="alert text-center">
+        No existen todavia escritorios creados para el usuario {{ owner }}
+      </p>
+    </div>
+  </ng-template>
+</div>
+<!--Finalizamos el contenedor del escritorio-->
 <app-back></app-back>

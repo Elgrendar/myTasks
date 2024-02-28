@@ -1,40 +1,35 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPencil, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { BackComponent } from '../../back/back.component';
+import { Task } from '../../models/task.model';
 
 @Component({
-  selector: 'app-task',
+  selector: 'app-tasks',
   standalone: true,
-  imports: [HeaderComponent, BackComponent],
+  imports: [
+    FontAwesomeModule,
+    NgFor,
+    NgIf,
+    NgClass,
+    HeaderComponent,
+    BackComponent,
+  ],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css',
 })
 export class TaskComponent {
-  tasks = [
-    {
-      id: 1,
-      description: 'Descripción de la tarea 0',
-      author: 'Rafa Campanero',
-    },
-    { id: 2, description: 'Descripción de la tarea 1', author: 'R. Campanero' },
-    { id: 3, description: 'Descripción de la tarea 2', author: 'JC' },
-    { id: 4, description: 'Descripción de la tarea 3', author: 'Raúl' },
-  ];
+  faPencil = faPencil;
+  faPlus = faPlus;
+  tasks: Task[]=[];
 
-  OnInit() {
-    for (let i = 0; i < this.tasks.length; i++) {
-      window.localStorage.setItem(
-        'Project_' + i,
-        JSON.stringify(this.tasks[i])
-      );
-    }
-    for (let i = 0; i < this.tasks.length; i++) {
-      console.log(window.localStorage.getItem('Project_' + i));
-    }
-    //remove un solo item
-    window.localStorage.removeItem('Project_1');
-
-    //limpiar todos los items
-    window.localStorage.clear();
+  constructor(public http: HttpClient) {
+    this.http.get<Task[]>('assets/data/tasks.json').subscribe((resultado) => {
+      this.tasks = resultado;
+      console.log(resultado);
+    });
   }
 }

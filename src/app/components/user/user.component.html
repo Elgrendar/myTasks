@@ -42,11 +42,10 @@
             <td>
               <!--<input type="checkbox" id="check_{{ user.id_user }}" /> -->
               <button
-                (click)="editUser(user.id_user)"
+                (click)="editUser(user.userId)"
                 class="m-1 rounded border-2"
                 [ariaDisabled]="true"
                 title="Edit user"
-                *ngIf="user.id_user!==undefined"
               >
                 <img
                   src="../../../assets/imagenes/sistema/edit_user.png"
@@ -55,25 +54,11 @@
                 />
               </button>
               <button
-                (click)="editUser(0)"
-                class="m-1 rounded border-2"
-                [ariaDisabled]="true"
-                title="Edit user"
-                *ngIf="user.id_user===undefined"
-              >
-                <img
-                  src="../../../assets/imagenes/sistema/edit_user.png"
-                  style="width: 15px; margin: 0 auto"
-                  alt="Edit user"
-                />
-              </button>
-
-              <button
-                (click)="delUser(user.id_user)"
+                (click)="delUser(user.userId)"
                 class="m-1 rounded border-2"
                 [ariaDisabled]="true"
                 title="Delete User"
-                *ngIf="user.id_user!==undefined"
+                *ngIf="user.userId !== 0"
               >
                 <img
                   src="../../../assets/imagenes/sistema/delete_users.png"
@@ -82,19 +67,20 @@
                 />
               </button>
             </td>
-            <td>{{ user.id_user }}</td>
-            <td>{{ user.user_name }}</td>
-            <td class="hidetext">sustituir</td><!--{{ user.user_pass }}-->
-            <td>{{ user.user_email }}</td>
-            <td>{{ user.user_image }}</td>
+            <td>{{ user.userId }}</td>
+            <td>{{ user.userName }}</td>
+            <td class="hidetext">sustituir</td>
+            <!--{{ user.user_pass }}-->
+            <td>{{ user.userEmail }}</td>
+            <td>{{ user.userImage }}</td>
           </tr>
         </tbody>
+        <ng-template #sinUsuarios>
+          <tbody>
+            <p>No hay usuarios dados de alta aún en el sistema.</p>
+          </tbody>
+        </ng-template>
       </table>
-      <ng-template #sinUsuarios>
-        <tbody>
-          <p>No hay usuarios dados de alta aún en el sistema.</p>
-        </tbody>
-      </ng-template>
     </div>
     <!--Finalizamos la tabla de los Usuarios-->
   </div>

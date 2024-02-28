@@ -30,14 +30,14 @@ export class UserComponent {
   delUser(id: number): void {
     const users = JSON.parse(window.localStorage.getItem('users') || '{}');
     users.forEach((user: User) => {
-      if (user.id_user == id) {
-        if (confirm('Estas seguro de borrar el usuario ' + user.user_name)) {
+      if (user.userId == id) {
+        if (confirm('Estas seguro de borrar el usuario ' + user.userName)) {
           const indice = users.indexOf(user);
           users.splice(indice, 1);
           window.localStorage.removeItem('users');
           window.localStorage.setItem('users', JSON.stringify(users));
           window.location.reload();
-          alert('Hemos borrado a ' + user.user_name);
+          alert('Hemos borrado a ' + user.userName);
         }
       }
     });

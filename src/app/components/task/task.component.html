@@ -1,3 +1,54 @@
 <app-header></app-header>
-<p>task works!</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="mt-5 col-4">
+      <h2 class="text-center">Proyecto Title</h2>
+      <div class="list-group" *ngIf="tasks !== undefined; else sinTareas">
+        <a
+          href="#"
+          class="list-group-item mb-2"
+          *ngFor="let task of tasks"
+          aria-current="true"
+          [ngClass]="task.taskEnded ? '' : 'active'"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <input
+              class="form-check-input me-1"
+              type="checkbox"
+              (change)="task.taskEnded = task.taskEnded === true ? false : true"
+              value="{{ task.taskEnded }}"
+              aria-label="..."
+            />
+            <h5
+              class="mb-1"
+              [ngClass]="task.taskEnded ? 'text-decoration-line-through' : ''"
+            >
+              {{ task.taskTitle }}
+            </h5>
+            <small>{{ task.taskCreationDate }}</small>
+          </div>
+          <div class="d-flex w-100 justify-content-between">
+            <p
+              class="mb-1"
+              [ngClass]="task.taskEnded ? 'text-decoration-line-through' : ''"
+            >
+              {{ task.taskDescription }}
+            </p>
+            <fa-icon [icon]="faPencil"></fa-icon>
+          </div>
+          <small>{{ task.taskOwner.userName }}.</small>
+        </a>
+        <hr />
+        <button type="button" class="Tasks_taskButton">
+          <span class="Tasks_taskButtonText"
+            ><fa-icon [icon]="faPlus"></fa-icon> Añadir otra tarea
+          </span>
+        </button>
+      </div>
+      <ng-template #sinTareas>
+        <p>No hay tareas para este proyecto.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
 <app-back></app-back>

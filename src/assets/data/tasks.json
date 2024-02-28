@@ -1,0 +1,55 @@
+[
+    {
+        "taskId": 1,
+        "taskCompleted": false,
+        "taskTitle": "Título de la tarea",
+        "taskDescription": "Esto es la descipción de la tarea",
+        "taskCreationDate": "25-02-2024",
+        "taskExpirationDate": "01-03-2024",
+        "taskFinishDate": "",
+        "taskOwner": {
+            "userId": 0,
+            "userName": "admin",
+            "userPassword": "admin",
+            "userEmail": "example@localhost.com",
+            "userActive": true,
+            "userCreation": "27-02-2024",
+            "userImage": "default.svg",
+            "userRol": 999
+        },
+        "taskEnded": false,
+        "taskCollaborators": []
+    },
+    {
+        "taskId": 2,
+        "taskCompleted": false,
+        "taskTitle": "Título de la tarea 2 ",
+        "taskDescription": "Esto es la descipción de la tarea 2",
+        "taskCreationDate": "20-02-2024",
+        "taskExpirationDate": "01-04-2024",
+        "taskFinishDate": "15-03-2024",
+        "taskOwner": {
+            "userId": 0,
+            "userName": "admin",
+            "userPassword": "admin",
+            "userEmail": "example@localhost.com",
+            "userActive": true,
+            "userCreation": "27-02-2024",
+            "userImage": "default.svg",
+            "userRol": 999
+        },
+        "taskEnded": false,
+        "taskCollaborators": [
+            {
+                "userId": 1,
+                "userName": "user",
+                "userPassword": "user",
+                "userEmail": "example@localhost.com",
+                "userActive": true,
+                "userCreation": "27-02-2024",
+                "userImage": "default.svg",
+                "userRol": 555
+            }
+        ]
+    }
+]

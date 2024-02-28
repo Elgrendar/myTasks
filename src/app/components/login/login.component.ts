@@ -60,8 +60,12 @@ export class LoginComponent implements OnInit {
     const password = this.form.controls['password'].value;
     const users = JSON.parse(window.localStorage.getItem('users') || '{}');
     users.forEach((user: User) => {
-      if (password === user['user_pass'] && usuario === user['user_name']) {
-        window.localStorage.setItem('token', 'dkffñklghfñklghfdf');
+      if (password === user['userPassword'] && usuario === user['userName']) {
+        sessionStorage.setItem('userId', user['userId'].toString()||'0');
+        sessionStorage.setItem('userName', user['userName']);
+        sessionStorage.setItem('userEmail', user['userEmail']);
+        sessionStorage.setItem('userImage', user['userImage']);
+        sessionStorage.setItem('token', 'dkffñklghfñklghfdf');
         this.router.navigateByUrl('/home');
       }
     });

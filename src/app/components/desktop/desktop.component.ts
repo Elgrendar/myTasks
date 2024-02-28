@@ -4,7 +4,7 @@ import { User } from '../../models/user.model';
 import { ProjectsComponent } from '../projects/projects.component';
 import { UserComponent } from '../user/user.component';
 import { HeaderComponent } from '../header/header.component';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { BackComponent } from '../../back/back.component';
 
 @Component({
@@ -16,21 +16,28 @@ import { BackComponent } from '../../back/back.component';
     UserComponent,
     HeaderComponent,
     NgFor,
-    BackComponent
+    NgIf,
+    BackComponent,
   ],
   templateUrl: './desktop.component.html',
   styleUrl: './desktop.component.css',
 })
 export class DesktopComponent {
-  public users:Array<User>;
-  public desktops:Array<Desktop>;
+addDesktop() {
+throw new Error('Method not implemented.');
+}
+  users: User[];
+  desktops: Desktop[];
+  owner: string = sessionStorage.getItem('user_name') || '';
 
-  constructor(){
-    this.users=JSON.parse(window.localStorage.getItem('users')||"{}");
-    this.desktops=JSON.parse(window.localStorage.getItem('desktops')||"{}");
+  constructor() {
+    this.users = JSON.parse(window.localStorage.getItem('users') || '{}');
+    this.desktops = JSON.parse(window.localStorage.getItem('desktops') || '{}');
   }
 
-  DoMouseOver(desktop: Desktop){
-    console.log('Has pasado por el titulo '+desktop.getTitle()+' del propietario ');
+  DoMouseOver() {
+    console.log(
+      'Has pasado por el titulo  del propietario '
+    );
   }
 }

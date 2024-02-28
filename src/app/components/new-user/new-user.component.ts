@@ -78,7 +78,7 @@ export class NewUserComponent implements OnInit {
       email != ''
     ) {
       const users = JSON.parse(window.localStorage.getItem('users') || '{}');
-      users.push(new User(usuario, password, email));
+      //users.push(new User(users.length,usuario, password, email));
       window.localStorage.removeItem('users');
       window.localStorage.setItem('users', JSON.stringify(users));
       this.router.navigateByUrl('/users');

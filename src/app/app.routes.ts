@@ -7,30 +7,29 @@ import { TaskComponent } from './components/task/task.component';
 import { Page404Component } from './components/page404/page404.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
-import { CanActivate } from './services/auth.guard';
 
 export const routes: Routes = [
     {
         path:'login', component: LoginComponent
     },
     {
-        path:'projects', component: ProjectsComponent, canActivate:[CanActivate]
+        path:'projects', component: ProjectsComponent
     },
     {
         path:'home',
-        component:HomeComponent, canActivate:[CanActivate]
+        component:HomeComponent
     },
     {
         path:'desktops',
-        component:DesktopComponent, canActivate:[CanActivate]
+        component:DesktopComponent
     },
     {
         path:'tasks',
-        component:TaskComponent, canActivate:[CanActivate]
+        component:TaskComponent
     },
     {
         path:'users',
-        component:UserComponent, canActivate:[CanActivate]
+        component:UserComponent
     },
     {
         path:'',redirectTo:'login',
