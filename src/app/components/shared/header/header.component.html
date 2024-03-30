@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark position-relative">
   <div class="container-fluid pl-5">
     <a class="navbar-brand">My Projects</a>
     <button
@@ -28,7 +28,7 @@
         </li>
       </ul>
       <span class="navbar-text">
-        <button type="button" class="btn btn-outline-success m-1">Profile</button>
+        <button type="button" class="btn btn-outline-success m-1 position-relative">Profile<span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread messages</span></span></button>
         <button type="button" class="btn btn-outline-success m-1" (click)="logout()">Logout</button>
     </span>
     </div>

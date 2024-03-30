@@ -1,10 +1,9 @@
-export interface User{
-    userId:number;
-    userName: string;
-    userPassword: string;
-    userEmail: string;
-    userActive:boolean;
-    userCreation: Date;
-    userImage: string;
-    userRol: number;
+export interface User {
+    userId: number,
+    userName: string,
+    userRol: [string],
+    userEmail: string,
+    userActive: string,//1 activo 0 noactivo
+    userAlias: string,
+    userImage: string
 }

@@ -1,14 +1,10 @@
-import { User } from "./user.model";
-
-export interface Task{
-    taskId: number;
-    taskCompleted: boolean;
-    taskTitle: string;
-    taskDescription: string;
-    taskCreationDate: Date;
-    taskExpirationDate: Date;
-    taskFinishDate: Date;
-    taskOwner: User;
-    taskEnded: boolean;
-    taskCollaborators:User[];
+export interface Task {
+    taskId: 0,
+    taskProjectId: number,
+    taskOwnerId: number,
+    taskTitle: string,
+    taskDescription: string,
+    taskActive: boolean,
+    taskCreationDate: Date,
+    taskEndDate: Date,
 }
