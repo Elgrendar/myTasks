@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { BackComponent } from '../../back/back.component';
+import { HeaderComponent } from '../shared/header/header.component';
+import { BackComponent } from '../shared/back/back.component';
 
 @Component({
   selector: 'app-projects',
@@ -9,4 +9,7 @@ import { BackComponent } from '../../back/back.component';
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css',
 })
-export class ProjectsComponent {}
+export class ProjectsComponent {
+  cookieSession: string = '';
+  userSessionId: string = '';
+}

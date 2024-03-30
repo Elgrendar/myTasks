@@ -1,0 +1,192 @@
+<div
+  class="container bg-success-subtle pt-5 mt-5 mx-auto border rounded bg-light col-6"
+  id="addUser"
+>
+  <div class="register-form">
+    <form [formGroup]="UserForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="userName">Username</label>
+        <input
+          type="text"
+          formControlName="userName"
+          class="form-control"
+          autocomplete="userName"
+          [ngClass]="{
+            'is-invalid':
+              submitted || (f['userName'].errors && f['userName'].dirty)
+          }"
+        />
+        @if (f['userName'].errors) {
+        <div class="invalid-feedback">
+          @if (f['userName'].errors['required']) {
+          <div>Username is required</div>
+          } @if (f['userName'].errors['minlength']) {
+          <div>Username must be at least 5 characters</div>
+          } @if (f['userName'].errors['maxlength']) {
+          <div>Username must not exceed 30 characters</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="form-group">
+        <label for="userPassword">Password</label>
+        <input
+          type="password"
+          formControlName="userPassword"
+          class="form-control"
+          autocomplete="current-password"
+          [ngClass]="{
+            'is-invalid':
+              submitted || (f['userPassword'].errors && f['userPassword'].dirty)
+          }"
+        />
+        @if (f['userPassword'].errors) {
+        <div class="invalid-feedback">
+          @if (f['userPassword'].errors['required']) {
+          <div>Password is required</div>
+          } @if (f['userPassword'].errors['minlength']) {
+          <div>Password must be at least 5 characters</div>
+          } @if (f['userPassword'].errors['maxlength']) {
+          <div>Password must not exceed 30 characters</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          formControlName="confirmPassword"
+          class="form-control"
+          autocomplete="new-password"
+          [ngClass]="{
+            'is-invalid':
+              submitted ||
+              (f['confirmPassword'].errors && f['confirmPassword'].dirty)
+          }"
+        />
+        @if (f['confirmPassword'].errors) {
+        <div class="invalid-feedback">
+          @if (f['confirmPassword'].errors['required']) {
+          <div>Password is required</div>
+          } @if (f['confirmPassword'].errors['minlength']) {
+          <div>Password must be at least 5 characters</div>
+          } @if (f['confirmPassword'].errors['maxlength']) {
+          <div>Password must not exceed 30 characters</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="form-group">
+        <label for="userEmail">Email</label>
+        <input
+          type="email"
+          formControlName="userEmail"
+          class="form-control"
+          autocomplete="email"
+          [ngClass]="{
+            'is-invalid':
+              submitted || (f['userEmail'].errors && f['userEmail'].dirty)
+          }"
+        />
+        @if (f['userEmail'].errors) {
+        <div class="invalid-feedback">
+          @if (f['userEmail'].errors['required']) {
+          <div>Username is required</div>
+          } @if (f['userEmail'].errors['email']) {
+          <div>Email must be correct format</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="form-group">
+        <label for="userRol">Rol</label>
+        <input
+          type="text"
+          formControlName="userRol"
+          class="form-control"
+          autocomplete="userRol"
+        />
+      </div>
+      <div class="form-group form-check">
+        <label for="userActive">Activo</label>
+        <input
+          type="checkbox"
+          formControlName="userActive"
+          class="form-control form-check-input"
+          autocomplete="userActive"
+        />
+      </div>
+      <div class="form-group">
+        <label for="userAlias">Alias</label>
+        <input
+          type="text"
+          formControlName="userAlias"
+          class="form-control"
+          autocomplete="userAlias"
+          [ngClass]="{
+            'is-invalid':
+              submitted && f['userAlias'].errors && f['userAlias'].dirty
+          }"
+        />
+        @if (f['userAlias'].errors) {
+        <div class="invalid-feedback">
+          @if (f['userAlias'].errors['minlength']) {
+          <div>Password must be at least 5 characters</div>
+          } @if (f['userAlias'].errors['maxlength']) {
+          <div>Password must not exceed 40 characters</div>
+          }@if (f['userAlias'].errors['required']) {
+          <div>Alias is required</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="form-group">
+        <label for="userImage">Imagen</label>
+        <input
+          type="file"
+          formControlName="userImage"
+          class="form-control"
+          autocomplete="email"
+        />
+      </div>
+      <div class="form-group form-check">
+        <label for="acceptTerms">Terminos y condiciones</label>
+        <input
+          type="checkbox"
+          formControlName="acceptTerms"
+          class="form-control form-check-input"
+          autocomplete="acceptTerms"
+          [ngClass]="{
+            'is-invalid':
+              submitted || (f['acceptTerms'].errors && f['acceptTerms'].dirty)
+          }"
+        />
+        @if (f['acceptTerms'].errors) {
+        <div class="invalid-feedback">
+          @if (f['acceptTerms'].errors['requiredTrue']) {
+          <div>You must accept our Terms and conditions</div>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <button
+          type="submit"
+          class="btn btn-primary m-2"
+          [disabled]="UserForm.invalid"
+        >
+          Add User
+        </button>
+        <button
+          type="button"
+          (click)="onReset()"
+          class="btn btn-warning right m-2"
+        >
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

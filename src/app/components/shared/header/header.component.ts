@@ -1,6 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-header',
@@ -10,11 +11,11 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  constructor(public router: Router){
+  constructor(public router: Router, private cookie: CookieService){
 
   }
   logout(){
-    localStorage.removeItem('token');
+    this.cookie.deleteAll();
     this.router.navigateByUrl("/login");
   }
 

@@ -1,0 +1,89 @@
+<div
+  class="container bg-success-subtle pt-5 mt-5 mx-auto border rounded bg-light col-6"
+  id="addDesktop"
+>
+  <div class="register-form">
+    <form [formGroup]="DesktopForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="desktopTitle">Título del escritorio</label>
+        <input
+          type="text"
+          formControlName="desktopTitle"
+          class="form-control"
+          autocomplete="desktopTitle"
+          [ngClass]="{
+            'is-invalid':
+              submitted || (f['desktopTitle'].errors && f['desktopTitle'].dirty)
+          }"
+        />
+        @if (f['desktopTitle'].errors) {
+        <div class="invalid-feedback">
+          @if (f['desktopTitle'].errors['required']) {
+          <div>El título del escritorio es requerido</div>
+          } @if (f['desktopTitle'].errors['minlength']) {
+          <div>El título del escritorio debe tener al menos 5 caracteres</div>
+          } @if (f['desktopTitle'].errors['maxlength']) {
+          <div>
+            El título del escritorio debe tener como máximo 30 caracteres
+          </div>
+          }
+        </div>
+        }
+      </div>
+      <div class="form-group">
+        <label for="desktopDescription">Descripción del escritorio</label>
+        <input
+          type="textArea"
+          formControlName="desktopDescription"
+          class="form-control"
+          autocomplete="desktopDescription"
+          [ngClass]="{
+            'is-invalid':
+              submitted ||
+              (f['desktopDescription'].errors && f['desktopDescription'].dirty)
+          }"
+        />
+        @if (f['desktopDescription'].errors) {
+        <div class="invalid-feedback">
+          @if (f['desktopDescription'].errors['required']) {
+          <div>La descripción del escritorio es requerida</div>
+          } @if (f['desktopDescription'].errors['minlength']) {
+          <div>
+            La descripción del escritorio debe tener al menos 5 caracteres
+          </div>
+          } @if (f['desktopDescription'].errors['maxlength']) {
+          <div>
+            La descripción del escritorio debe tener como máximo 30 caracteres
+          </div>
+          }
+        </div>
+        }
+      </div>
+      <div class="form-group">
+        <label for="desktopColor">Color de Fondo del escritorio</label>
+        <input
+          type="color"
+          formControlName="desktopColor"
+          class="form-control"
+          autocomplete="desktopColor"
+        />
+      </div>
+      <div class="form-group">
+        <button
+          type="submit"
+          class="btn btn-primary m-2"
+          [disabled]="DesktopForm.invalid"
+        >
+          Añadir Desktop
+        </button>
+        <button
+          type="button"
+          (click)="onReset()"
+          class="btn btn-warning right m-2"
+        >
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

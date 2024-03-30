@@ -1,74 +1,59 @@
-import { NgClass, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { User } from '../../models/user.model';
-import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
+import { Login } from '../../models/login.model';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NgClass, ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf],
+  providers: [AuthService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
-  submitted = false;
+  errorSession: boolean = false;
+  errorMessage: string = '';
+  loginForm!: FormGroup;
+  login!: Login;
+  remember: number = 1;
 
-  constructor(private formBuilder: FormBuilder, public router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      username: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(20),
-        ],
-      ],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(40),
-        ],
-      ],
+    this.loginForm = this.formBuilder.group({
+      user: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
     });
   }
-  get f(): { [key: string]: AbstractControl } {
-    return this.form.controls;
-  }
-  onSubmit(): void {
-    this.submitted = true;
 
-    if (this.form.invalid) {
-      return;
-    }
-    const usuario = this.form.controls['username'].value;
-    const password = this.form.controls['password'].value;
-    const users = JSON.parse(window.localStorage.getItem('users') || '{}');
-    users.forEach((user: User) => {
-      if (password === user['user_pass'] && usuario === user['user_name']) {
-        window.localStorage.setItem('token', 'dkffñklghfñklghfdf');
-        this.router.navigateByUrl('/home');
+  sendLogin(): void {
+    this.errorSession = false;
+    const { user, password } = this.loginForm.value;
+    this.authService.sendCredentials(user, password).subscribe(
+      (responseOk) => {
+        const{tokenSession} = responseOk;
+        if (tokenSession === undefined) {
+          this.errorSession = true;
+          this.errorMessage = 'Hubo un problema con tu usuario y contraseña';
+        }
+      },
+      (err) => {
+        this.errorMessage = err;
       }
-    });
-  }
-
-  onReset(): void {
-    this.submitted = false;
-    this.form.reset();
+    );
   }
 }
