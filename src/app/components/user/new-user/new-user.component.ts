@@ -30,7 +30,7 @@ export class NewUserComponent implements OnInit {
     userEmail: new FormControl(''),
     userActive: new FormControl(''),
     userAlias: new FormControl(''),
-    userImage: new FormControl(''),
+    //userImage: new FormControl(''),
     acceptTerms: new FormControl(false),
   });
   @Input() userId: number = 0;
@@ -89,7 +89,7 @@ export class NewUserComponent implements OnInit {
             Validators.maxLength(30),
           ],
         ],
-        userImage: ['', []],
+        //userImage: ['', []],
         acceptTerms: ['', [Validators.requiredTrue]],
       });
     } else {
@@ -140,7 +140,7 @@ export class NewUserComponent implements OnInit {
               Validators.maxLength(30),
             ],
           ],
-          userImage: ['', []],
+          //userImage: ['', []],
           acceptTerms: [true, [Validators.requiredTrue]],
         });
       });
@@ -159,6 +159,8 @@ export class NewUserComponent implements OnInit {
     } else {
       body = body.append('do', 'update');
     }
+    body = body.append('token', this.cookieSession);
+    body = body.append('userId', this.userSessionId);
     body = body.append('user', this.userId);
     body = body.append('userName', this.UserForm.controls['userName'].value);
     body = body.append(
@@ -171,7 +173,8 @@ export class NewUserComponent implements OnInit {
       'userActive',
       this.UserForm.controls['userActive'].value
     );
-    body = body.append('userImage', this.UserForm.controls['userImage'].value);
+    //body = body.append('userImage', this.UserForm.controls['userImage'].value);
+    body = body.append('userImage', '');
     body = body.append(
       'acceptTerms',
       this.UserForm.controls['acceptTerms'].value
