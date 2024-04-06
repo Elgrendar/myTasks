@@ -45,7 +45,7 @@
             {{ desktop.desktopDescription }}
           </p>
           <div class="text-center">
-            <a href="#" class="btn btn-primary">Open</a>
+            <button (click)="openDesktop(desktop.desktopId)" class="btn btn-primary">Open</button>
             <button (click)="editDesktop(desktop.desktopId)" class="btn btn-primary">Editar</button>
           </div>
         </div>

@@ -1,0 +1,89 @@
+<div
+  class="container bg-success-subtle pt-5 mt-5 mx-auto border rounded bg-light col-6"
+  id="addProject"
+>
+  <div class="register-form">
+    <form [formGroup]="ProjectForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="projectTitle">Título del proyecto</label>
+        <input
+          type="text"
+          formControlName="projectTitle"
+          class="form-control"
+          autocomplete="projectTitle"
+          [ngClass]="{
+            'is-invalid':
+              submitted || (f['projectTitle'].errors && f['projectTitle'].dirty)
+          }"
+        />
+        @if (f['projectTitle'].errors) {
+        <div class="invalid-feedback">
+          @if (f['projectTitle'].errors['required']) {
+          <div>El título del proyecto es requerido</div>
+          } @if (f['projectTitle'].errors['minlength']) {
+          <div>El título del proyecto debe tener al menos 5 caracteres</div>
+          } @if (f['projectTitle'].errors['maxlength']) {
+          <div>
+            El título del proyecto debe tener como máximo 30 caracteres
+          </div>
+          }
+        </div>
+        }
+      </div>
+      <div class="form-group">
+        <label for="projectDescription">Descripción del proyecto</label>
+        <input
+          type="textArea"
+          formControlName="projectDescription"
+          class="form-control"
+          autocomplete="projectDescription"
+          [ngClass]="{
+            'is-invalid':
+              submitted ||
+              (f['projectDescription'].errors && f['projectDescription'].dirty)
+          }"
+        />
+        @if (f['projectDescription'].errors) {
+        <div class="invalid-feedback">
+          @if (f['projectDescription'].errors['required']) {
+          <div>La descripción del escritorio es requerida</div>
+          } @if (f['projectDescription'].errors['minlength']) {
+          <div>
+            La descripción del proyecto debe tener al menos 5 caracteres
+          </div>
+          } @if (f['projectDescription'].errors['maxlength']) {
+          <div>
+            La descripción del proyecto debe tener como máximo 30 caracteres
+          </div>
+          }
+        </div>
+        }
+      </div>
+      <div class="form-group">
+        <label for="projectActive">Proyecto Activo</label>
+        <input
+          type="checkbox"
+          formControlName="projectActive"
+          class="form-control form-check-input"
+          autocomplete="projectActive"
+        />
+      </div>
+      <div class="form-group">
+        <button
+          type="submit"
+          class="btn btn-primary m-2"
+          [disabled]="ProjectForm.invalid"
+        >
+          Añadir Proyecto
+        </button>
+        <button
+          type="button"
+          (click)="onReset()"
+          class="btn btn-warning right m-2"
+        >
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
