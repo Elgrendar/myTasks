@@ -79,4 +79,9 @@ export class DesktopComponent {
     this.hide = !this.hide;
     this.desktopEdit = id;
   }
+
+  openDesktop(id:number): void{
+    this.cookie.set("desktopActive", id.toString(),1,'/projects');
+    this.router.navigateByUrl('/projects');
+  }
 }

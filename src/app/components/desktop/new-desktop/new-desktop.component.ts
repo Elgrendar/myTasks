@@ -84,9 +84,7 @@ export class NewDesktopComponent implements OnInit {
               this.desktop[0].desktopDescription,
               [Validators.maxLength(150)],
             ],
-            desktopColor: [
-              this.desktop[0].desktopColor,
-            ],
+            desktopColor: [this.desktop[0].desktopColor],
           });
         });
     }
@@ -115,7 +113,7 @@ export class NewDesktopComponent implements OnInit {
       this.DesktopForm.controls['desktopColor'].value
     );
     this.http.post<boolean>(this.URL, body).subscribe((resultado: boolean) => {
-      console.log (resultado);
+      console.log(resultado);
       if (resultado) {
         this.router.navigateByUrl('/desktops');
         window.location.reload();

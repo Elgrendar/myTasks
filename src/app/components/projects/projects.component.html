@@ -1,16 +1,64 @@
 <app-header></app-header>
-<div class="container mt-5"><!--Iniciamos el contenedor de la tarea-->
-  <div class="row"><!-- Iniciamos la fila de tareas del proyecto-->
-    <div class="card mt-5" style="width: 18rem"><!--Iniciamos el div de la tarea-->
-      <img src="../../../assets/imagenes/sistema/task_icon.svg" class="card-img-top" alt="Project" />
-      <div class="card-body">
-        <h5 class="card-title text-center">PROJECT TITLE</h5>
-        <p class="card-text">Description of Project</p>
-        <div class="text-center">
-          <a href="#" class="btn btn-primary">Open Project</a>
+<div class="container" id="projectTable" *ngIf="hide; else addProjectForm">
+  <div class="container mt-5">
+    <!--Iniciamos el contenedor de options-->
+    <div class="row">
+      <!-- Iniciamos la fila de las options-->
+
+      <button
+        (click)="addProject()"
+        class="m-2 p-3 mx-auto col-1 rounded border-2"
+        [ariaDisabled]="true"
+        title="New desktop"
+      >
+        <img
+          src="../../../assets/imagenes/sistema/plus_icon_white.svg"
+          class="card-img-top"
+          style="width: 75px; margin: 0 auto"
+          alt="New project"
+        />
+      </button>
+    </div>
+    <!--Finalizamos la fila de las options-->
+  </div>
+  <div class="container mt-5">
+    <!--Iniciamos el contenedor de la tarea-->
+    <div class="row" *ngIf="projects.length > 0; else sinProjects">
+      <!-- Iniciamos la fila de tareas del proyecto-->
+      <div
+        class="card mt-5"
+        *ngFor="let project of projects"
+        style="width: 18rem"
+      >
+        <!--Iniciamos el div de la tarea-->
+        <img
+          src="../../../assets/imagenes/sistema/task_icon.svg"
+          class="card-img-top"
+          alt="Project"
+        />
+        <div class="card-body">
+          <h5 class="card-title text-center">{{ project.projectTitle }}</h5>
+          <p class="card-text">{{ project.projectDescription }}</p>
+          <div class="text-center">
+            <a href="#" class="btn btn-primary">Abrir Proyecto</a>
+          </div>
         </div>
       </div>
-    </div><!--Finalizamos el div de la tarea-->
-  </div><!--Finalizamos la fila de tareas del proyecto-->
-</div><!--Finalizamos el contenedor del tarea-->
+      <!--Finalizamos el div de la tarea-->
+    </div>
+    <!--Finalizamos la fila de tareas del proyecto-->
+    <ng-template #sinProjects>
+      <div class="row">
+        <p class="alert text-center">
+          No existen todavia proyectos creados para el usuario en este {{projects.length}}
+          escritorio.
+        </p>
+      </div>
+    </ng-template>
+  </div>
+</div>
+<!--Finalizamos el contenedor del tarea-->
+<ng-template #addProjectForm>
+  <app-new-project [projectId]="projectEdit"></app-new-project>
+</ng-template>
 <app-back></app-back>
