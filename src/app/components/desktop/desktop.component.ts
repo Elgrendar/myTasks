@@ -40,8 +40,8 @@ export class DesktopComponent {
     public router: Router,
     private cookie: CookieService
   ) {
-    this.cookie.delete("projectActive");
-    this.cookie.delete("taskActive");
+    this.cookie.delete('projectActive');
+    this.cookie.delete('taskActive');
     this.cookieSession = this.cookie.get('tokenSession');
     this.userSessionId = this.cookie.get('userId');
     let body = new HttpParams();
@@ -82,9 +82,9 @@ export class DesktopComponent {
     this.desktopEdit = id;
   }
 
-  openDesktop(id:number): void{
-    this.cookie.set("desktopActive", id.toString(),1,'/');
-    this.cookie.set
+  openDesktop(id: number): void {
+    this.cookie.set('desktopActive', id.toString(), 1, '/');
+    this.cookie.set;
     console.log(id);
     this.router.navigateByUrl('/projects');
   }

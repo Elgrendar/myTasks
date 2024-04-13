@@ -32,8 +32,8 @@ export class ProjectsComponent {
     public body: HttpParams
   ) {
     //Borramos los restos de alguna id de tareas anteriores
-    this.cookie.delete("taskActive");
-    
+    this.cookie.delete('taskActive');
+
     this.cookieSession = this.cookie.get('tokenSession');
     this.userSessionId = this.cookie.get('userId');
     this.desktopActive = this.cookie.get('desktopActive');
