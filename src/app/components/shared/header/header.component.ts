@@ -19,4 +19,11 @@ export class HeaderComponent {
     this.router.navigateByUrl("/login");
   }
 
+  existDesktop():boolean{
+    return this.cookie.check("desktopActive");
+  }
+
+  existProject():boolean{
+    return this.cookie.check("projectActive");
+  }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Desktop } from '../../models/desktop.model';
 import { ProjectsComponent } from '../projects/projects.component';
 import { UserComponent } from '../user/user.component';
@@ -40,6 +40,8 @@ export class DesktopComponent {
     public router: Router,
     private cookie: CookieService
   ) {
+    this.cookie.delete("projectActive");
+    this.cookie.delete("taskActive");
     this.cookieSession = this.cookie.get('tokenSession');
     this.userSessionId = this.cookie.get('userId');
     let body = new HttpParams();
@@ -81,7 +83,9 @@ export class DesktopComponent {
   }
 
   openDesktop(id:number): void{
-    this.cookie.set("desktopActive", id.toString(),1,'/projects');
+    this.cookie.set("desktopActive", id.toString(),1,'/');
+    this.cookie.set
+    console.log(id);
     this.router.navigateByUrl('/projects');
   }
 }

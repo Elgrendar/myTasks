@@ -40,7 +40,7 @@
           <h5 class="card-title text-center">{{ project.projectTitle }}</h5>
           <p class="card-text">{{ project.projectDescription }}</p>
           <div class="text-center">
-            <a href="#" class="btn btn-primary">Abrir Proyecto</a>
+            <button (click)="openProject(project.projectId)" class="btn btn-primary">Abrir Proyecto</button>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { HeaderComponent } from '../shared/header/header.component';
 import { BackComponent } from '../shared/back/back.component';
 import { environment } from '../../../environments/environment.development';
@@ -31,6 +31,9 @@ export class ProjectsComponent {
     private cookie: CookieService,
     public body: HttpParams
   ) {
+    //Borramos los restos de alguna id de tareas anteriores
+    this.cookie.delete("taskActive");
+    
     this.cookieSession = this.cookie.get('tokenSession');
     this.userSessionId = this.cookie.get('userId');
     this.desktopActive = this.cookie.get('desktopActive');
@@ -67,5 +70,11 @@ export class ProjectsComponent {
   editProject(id: number): void {
     this.hide = !this.hide;
     this.projectEdit = id;
+  }
+
+  openProject(id: number): void {
+    this.cookie.set('projectActive', id.toString());
+    this.cookie.delete('taskActive');
+    this.router.navigateByUrl('/tasks');
   }
 }
