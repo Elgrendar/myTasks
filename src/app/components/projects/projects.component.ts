@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderComponent } from '../shared/header/header.component';
 import { BackComponent } from '../shared/back/back.component';
 import { environment } from '../../../environments/environment.development';

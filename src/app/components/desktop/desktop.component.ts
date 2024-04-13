@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Desktop } from '../../models/desktop.model';
 import { ProjectsComponent } from '../projects/projects.component';
 import { UserComponent } from '../user/user.component';
